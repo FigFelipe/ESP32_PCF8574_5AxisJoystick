@@ -12,10 +12,11 @@ O objeto desse repositório é exemplificar o uso do 'PCF8574' (expansor de IO I
 
 ## Como funciona?
 
-* É utilizado, do PCF8574, o terminal P0 como Saída Digital, para gerar um sinal lógico de valor UM. Esse valor lógico é conectado no terminal COM (comum) do módulo Joystick 5 eixos.
-* Os terminais do PCF8574, entre P1 e P7, são definidos como Entrada Digital, que recebem um sinal de valor ZERO assim que qualquer botão do Joystick 5 eixos for acionado.
-* Ao acionar qualquer botão do Joystick 5 eixos, o PCF8574 detecta mudança de status em suas entradas digitais, modificando (para o valor ZERO) o pino de interrupção *INT.
-* O sinal do terminal INT (PCF8574) é enviado para o GPIO do ESP32, o qual detecta um sinal de interrupção externa e realiza a comunicação I²C para realizar a leitura de todos os GPIOs do PCF8574, assim determinando qual função do Joystick de 5 eixos foi realizada.
+* No PCF8574, o terminal P0 é definido como Saída Digital, com objetivo de gerar um sinal lógico de valor UM. Esse valor lógico é conectado no terminal COM (comum) do módulo Joystick 5 eixos.
+* Já os outros terminais do PCF8574, entre P1 e P7, são definidos como Entrada Digital, qual recebem um sinal de valor ZERO assim que qualquer botão do Joystick 5 eixos for pressionado.
+* Ao pressionar qualquer botão do Joystick 5 eixos, o PCF8574 detecta mudança de status em suas entradas digitais, modificando (para o valor ZERO) o terminal de interrupção *INT.
+* O sinal do terminal INT (PCF8574) é enviado para o GPIO do ESP32, o qual também detecta um sinal de interrupção externa.
+* O ESP32 ao receber o sinal de interrupção externa realiza a comunicação via I²C com o PCF8574, realizando a leitura de todos os GPIOs de entrada do PCF8574, sendo assim determinando qual botão do Joystick de 5 eixos foi pressionado.
 
 ### 1. Conexão elétrica entre o módulo Joystick 5 Eixos e o módulo PCF8574
 
